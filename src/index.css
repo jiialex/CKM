@@ -1,0 +1,304 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+  --app-bg: 244 247 251;
+  --app-surface: 255 255 255;
+  --app-surface-muted: 241 245 249;
+  --app-surface-strong: 248 250 252;
+  --app-border: 226 232 240;
+  --app-border-strong: 203 213 225;
+  --app-text: 15 23 42;
+  --app-heading: 2 6 23;
+  --app-muted: 100 116 139;
+  --app-shadow: 15 23 42;
+  --app-grid: 148 163 184;
+
+  /* Brand and UI semantic colors */
+  --app-primary: 34 66 87;
+  --app-primary-hover: 26 51 68;
+  --app-accent: 58 112 148;
+  --app-accent-hover: 46 89 118;
+  --app-accent-light: 225 236 244;
+  --app-sidebar-bg: 30 58 82;
+  --app-sidebar-text: 203 213 225;
+  --app-sidebar-active: 205 223 236;
+
+  --app-success: 16 185 129;
+  --app-success-soft: 230 247 240;
+  --app-warning: 245 158 11;
+  --app-warning-soft: 254 246 231;
+  --app-danger: 239 68 68;
+  --app-danger-soft: 253 235 235;
+}
+
+.dark {
+  color-scheme: dark;
+  --app-bg: 8 12 18;
+  --app-surface: 17 24 39;
+  --app-surface-muted: 23 31 46;
+  --app-surface-strong: 31 41 55;
+  --app-border: 48 59 75;
+  --app-border-strong: 71 85 105;
+  --app-text: 213 220 230;
+  --app-heading: 248 250 252;
+  --app-muted: 148 163 184;
+  --app-shadow: 0 0 0;
+  --app-grid: 70 83 104;
+
+  /* Brand and UI semantic colors (redesigned) */
+  --app-primary: 14 165 233;
+  --app-primary-hover: 2 132 199;
+  --app-accent: 45 212 191;
+  --app-accent-hover: 94 234 212;
+  --app-accent-light: 19 78 74;
+  --app-sidebar-bg: 10 16 26;
+  --app-sidebar-text: 203 213 225;
+  --app-sidebar-active: 14 22 35;
+
+  --app-success: 34 197 94;
+  --app-success-soft: 5 46 22;
+  --app-warning: 245 158 11;
+  --app-warning-soft: 69 44 7;
+  --app-danger: 244 63 94;
+  --app-danger-soft: 76 5 25;
+}
+
+@theme {
+  --color-app-bg: rgb(var(--app-bg));
+  --color-app-surface: rgb(var(--app-surface));
+  --color-app-surface-muted: rgb(var(--app-surface-muted));
+  --color-app-surface-strong: rgb(var(--app-surface-strong));
+  --color-app-border: rgb(var(--app-border));
+  --color-app-border-strong: rgb(var(--app-border-strong));
+  --color-app-text: rgb(var(--app-text));
+  --color-app-heading: rgb(var(--app-heading));
+  --color-app-muted: rgb(var(--app-muted));
+  --color-app-shadow: rgb(var(--app-shadow));
+  --color-app-grid: rgb(var(--app-grid));
+  --color-app-primary: rgb(var(--app-primary));
+  --color-app-primary-hover: rgb(var(--app-primary-hover));
+  --color-app-accent: rgb(var(--app-accent));
+  --color-app-accent-hover: rgb(var(--app-accent-hover));
+  --color-app-accent-light: rgb(var(--app-accent-light));
+  --color-app-sidebar-bg: rgb(var(--app-sidebar-bg));
+  --color-app-sidebar-text: rgb(var(--app-sidebar-text));
+  --color-app-sidebar-active: rgb(var(--app-sidebar-active));
+  --color-app-success: rgb(var(--app-success));
+  --color-app-success-soft: rgb(var(--app-success-soft));
+  --color-app-warning: rgb(var(--app-warning));
+  --color-app-warning-soft: rgb(var(--app-warning-soft));
+  --color-app-danger: rgb(var(--app-danger));
+  --color-app-danger-soft: rgb(var(--app-danger-soft));
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  background-color: rgb(var(--app-bg));
+  color: rgb(var(--app-text));
+  transition:
+    background-color 200ms ease,
+    color 200ms ease;
+}
+
+.app-shell {
+  background-color: rgb(var(--app-bg));
+  color: rgb(var(--app-text));
+}
+
+.app-surface {
+  background-color: rgb(var(--app-surface));
+  border: 1px solid rgb(var(--app-border));
+  box-shadow: 0 18px 45px rgb(var(--app-shadow) / 0.08);
+}
+
+.dark .app-surface {
+  box-shadow: 0 20px 55px rgb(var(--app-shadow) / 0.32);
+}
+
+.app-surface-soft {
+  background-color: rgb(var(--app-surface-muted) / 0.76);
+  border: 1px solid rgb(var(--app-border));
+}
+
+.app-surface-strong {
+  background-color: rgb(var(--app-surface-strong));
+  border: 1px solid rgb(var(--app-border));
+}
+
+.app-topbar {
+  background-color: rgb(var(--app-bg) / 0.82);
+  border-bottom: 1px solid rgb(var(--app-border));
+  backdrop-filter: blur(16px);
+}
+
+.app-input,
+.app-select,
+.app-textarea {
+  background-color: rgb(var(--app-surface-strong));
+  border: 1px solid rgb(var(--app-border));
+  color: rgb(var(--app-heading));
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease,
+    color 150ms ease;
+}
+
+.app-input::placeholder,
+.app-textarea::placeholder {
+  color: rgb(var(--app-muted));
+}
+
+.app-input:focus,
+.app-select:focus,
+.app-textarea:focus {
+  outline: none;
+  border-color: rgb(99 102 241 / 0.45);
+  box-shadow: 0 0 0 3px rgb(99 102 241 / 0.12);
+}
+
+.app-heading {
+  color: rgb(var(--app-heading));
+}
+
+.app-muted {
+  color: rgb(var(--app-muted));
+}
+
+.app-grid-backdrop {
+  background-image:
+    linear-gradient(to right, rgb(var(--app-grid) / 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(var(--app-grid) / 0.12) 1px, transparent 1px);
+}
+
+.app-page {
+  background-color: rgb(var(--app-bg));
+  color: rgb(var(--app-text));
+}
+
+.app-card {
+  background-color: rgb(var(--app-surface));
+  border: 1px solid rgb(var(--app-border));
+  color: rgb(var(--app-text));
+  box-shadow: 0 12px 32px rgb(var(--app-shadow) / 0.08);
+}
+
+.app-panel {
+  background-color: rgb(var(--app-surface-muted));
+  border: 1px solid rgb(var(--app-border));
+  color: rgb(var(--app-text));
+}
+
+.app-subtle {
+  background-color: rgb(var(--app-surface-strong));
+  border: 1px solid rgb(var(--app-border));
+  color: rgb(var(--app-text));
+}
+
+.app-primary-action {
+  background-color: rgb(var(--app-primary));
+  color: white;
+}
+
+.app-primary-action:hover {
+  background-color: rgb(var(--app-primary-hover));
+}
+
+.dark .app-card {
+  box-shadow: 0 18px 42px rgb(var(--app-shadow) / 0.38);
+}
+
+/* Compatibility layer for legacy light-only utility classes. */
+:where(.dark) :is(.bg-white, .bg-slate-50, .bg-gray-50):not([class*="dark:bg-"]) {
+  background-color: rgb(var(--app-surface));
+}
+
+:where(.dark) :is(.bg-slate-100, .bg-gray-100, .bg-gray-50\/50, .bg-slate-50\/50):not([class*="dark:bg-"]) {
+  background-color: rgb(var(--app-surface-muted));
+}
+
+:where(.dark) :is(.border-slate-100, .border-slate-200, .border-gray-100, .border-gray-200, .border-gray-300):not([class*="dark:border-"]) {
+  border-color: rgb(var(--app-border));
+}
+
+:where(.dark) :is(.divide-slate-100, .divide-gray-100):not([class*="dark:divide-"]) > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgb(var(--app-border));
+}
+
+:where(.dark) :is(.text-slate-900, .text-slate-800, .text-gray-900, .text-gray-800):not([class*="dark:text-"]) {
+  color: rgb(var(--app-heading));
+}
+
+:where(.dark) :is(.text-slate-700, .text-slate-600, .text-gray-700, .text-gray-600):not([class*="dark:text-"]) {
+  color: rgb(var(--app-text));
+}
+
+:where(.dark) :is(.text-slate-500, .text-slate-400, .text-gray-500, .text-gray-400):not([class*="dark:text-"]) {
+  color: rgb(var(--app-muted));
+}
+
+:where(.dark) [class*="bg-[#f4f5f9]"],
+:where(.dark) [class*="bg-[#f8fafc]"],
+:where(.dark) [class*="bg-[#f8f9fa]"],
+:where(.dark) [class*="bg-[#F4F7F9]"]:not([class*="dark:bg-"]) {
+  background-color: rgb(var(--app-bg));
+}
+
+:where(.dark) [class*="bg-[#122430]"],
+:where(.dark) [class*="bg-[#111823]"],
+:where(.dark) [class*="bg-[#161B22]"],
+:where(.dark) [class*="bg-[#0D1117]"],
+:where(.dark) [class*="bg-[#0A0D12]"],
+:where(.dark) [class*="bg-[#090D14]"] {
+  background-color: rgb(var(--app-surface));
+}
+
+:where(.dark) [class*="bg-[#161F2E]"],
+:where(.dark) [class*="bg-[#182230]"],
+:where(.dark) [class*="bg-[#1a2536]"],
+:where(.dark) [class*="bg-[#1c283a]"],
+:where(.dark) [class*="bg-[#0B151D]"],
+:where(.dark) [class*="bg-[#0F1E29]"],
+:where(.dark) [class*="bg-[#1E3A4C]"] {
+  background-color: rgb(var(--app-surface-muted));
+}
+
+:where(.dark) [class*="from-[#0B151D]"] {
+  --tw-gradient-from: rgb(var(--app-bg)) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(var(--app-bg) / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+}
+
+:where(.dark) [class*="to-[#0F1E29]"] {
+  --tw-gradient-to: rgb(var(--app-surface-muted)) var(--tw-gradient-to-position);
+}
+
+:where(.dark) [class*="border-[#30363D]"],
+:where(.dark) [class*="border-[#CBDCE9]"]:not([class*="dark:border-"]) {
+  border-color: rgb(var(--app-border));
+}
+
+:where(.dark) [class*="text-[#1a1d23]"],
+:where(.dark) [class*="text-[#111111]"],
+:where(.dark) [class*="text-[#1E3A4C]"],
+:where(.dark) [class*="text-[#1B2559]"]:not([class*="dark:text-"]) {
+  color: rgb(var(--app-heading));
+}
+
+:where(.dark) [class*="text-[#333333]"],
+:where(.dark) [class*="text-[#334756]"],
+:where(.dark) [class*="text-[#5e6678]"],
+:where(.dark) [class*="text-[#5C7282]"]:not([class*="dark:text-"]) {
+  color: rgb(var(--app-text));
+}
+
+:where(.dark) [class*="text-[#9ca4b6]"],
+:where(.dark) [class*="text-[#9BB1C1]"]:not([class*="dark:text-"]) {
+  color: rgb(var(--app-muted));
+}
