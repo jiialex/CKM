@@ -1,0 +1,56 @@
+services:
+  mysql:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_NAME:-pki_certificate_management}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-12345}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+
+  backend:
+    build:
+      context: ./backend
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      DB_URL: ${DB_URL:-jdbc:mysql://mysql:3306/pki_certificate_management?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true}
+      DB_USERNAME: ${DB_USERNAME:-root}
+      DB_PASSWORD: ${DB_PASSWORD:-12345}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:5173}
+      REDIS_HOST: ${REDIS_HOST:-redis}
+      REDIS_PORT: ${REDIS_PORT:-6379}
+      PKI_MASTER_SECRET: ${PKI_MASTER_SECRET:-ChangeThisSecret123!}
+      SERVER_PORT: ${SERVER_PORT:-8080}
+      MAIL_HOST: ${MAIL_HOST:-smtp.gmail.com}
+      MAIL_PORT: ${MAIL_PORT:-587}
+      MAIL_USERNAME: ${MAIL_USERNAME:-your-email@gmail.com}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:-your-app-password}
+      SOFTHSM_LIBRARY: ${SOFTHSM_LIBRARY:-/usr/lib/softhsm/libsofthsm2.so}
+      SOFTHSM_SLOT_PIN: ${SOFTHSM_SLOT_PIN:-12121212}
+    depends_on:
+      - mysql
+      - redis
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build:
+      context: .
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "5173:80"
+
+volumes:
+  mysql_data:
