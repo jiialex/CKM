@@ -1,16 +1,41 @@
-# React + Vite
+# Certificate Management and Key Generation System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+The **Certificate Management and Key Generation System** is a security-focused application designed to simplify the generation, management, and handling of cryptographic keys and digital certificates.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The system provides tools for creating cryptographic key pairs, managing digital certificates, and supporting secure communication through Public Key Infrastructure (PKI) concepts. It aims to improve security, simplify certificate administration, and provide a structured approach to digital identity and authentication.
 
-## React Compiler
+## Key Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Cryptographic Key Generation:** Generate public and private key pairs for secure communication and encryption.
+- **Digital Certificate Management:** Create, manage, and maintain digital certificates.
+- **Certificate Handling:** Support certificate-related operations throughout their lifecycle.
+- **Security and Authentication:** Apply cryptographic principles to support identity verification and secure communication.
+- **Centralized Management:** Organize certificate and key management operations in one system.
 
-## Expanding the ESLint configuration
+## Technologies & Concepts
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Cryptography
+- Public Key Infrastructure (PKI)
+- Digital Certificates
+- Public and Private Key Generation
+- Secure Authentication
+- OpenSSL / XCA (where applicable)
+
+## Project Objective
+
+The main objective of this project is to provide a practical solution for managing digital certificates and generating cryptographic keys while strengthening the understanding and application of information security concepts.
+
+## Use Cases
+
+- Generating cryptographic keys for secure applications.
+- Managing digital certificates.
+- Supporting secure communication between systems.
+- Understanding and applying PKI and certificate-based authentication.
+
+## Author
+
+**Jitu Alemayehu**
+
+Software Engineering Student | Full-Stack Developer
